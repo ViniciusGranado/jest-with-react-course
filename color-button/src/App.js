@@ -5,14 +5,14 @@ export const repalaceCamelWithSpaces = (colorName) => {
 } 
 
 function App() {
-  const [buttonColor, setbuttonColor] = useState('red');
+  const [buttonColor, setbuttonColor] = useState('MediumVioletRed');
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  const newButtonColor = buttonColor === 'red' ? 'blue' : 'red';
+  const newButtonColor = buttonColor === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed';
 
   const buttonColorHandler = () => {
     setbuttonColor((prev) => {
-      return prev === 'red' ? 'blue' : 'red';
+      return prev === 'MediumVioletRed' ? 'MidnightBlue' : 'MediumVioletRed';
     });
   };
 
@@ -32,7 +32,7 @@ function App() {
               : { backgroundColor: buttonColor }
           }
         >
-          Change to {newButtonColor}
+          Change to {repalaceCamelWithSpaces(newButtonColor)}
         </button>
 
         <input
