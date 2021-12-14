@@ -16,7 +16,7 @@ function App() {
 
   const buttonDisabledHandler = (event) => {
     setIsButtonDisabled(event.target.checked);
-  }
+  };
 
   return (
     <div className="App">
@@ -29,7 +29,13 @@ function App() {
           Change to {newButtonColor}
         </button>
 
-        <input type='checkbox' onChange={buttonDisabledHandler} defaultChecked={isButtonDisabled}></input>
+        <input
+          type="checkbox"
+          id="disable-button-checkbox"
+          onChange={buttonDisabledHandler}
+          defaultChecked={isButtonDisabled}
+        ></input>
+        <label htmlFor="disable-button-checkbox">Disable button</label>
       </div>
     </div>
   );
