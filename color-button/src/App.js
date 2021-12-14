@@ -22,9 +22,13 @@ function App() {
     <div className="App">
       <div>
         <button
-          style={{ backgroundColor: buttonColor }}
           onClick={buttonColorHandler}
           disabled={isButtonDisabled}
+          style={
+            isButtonDisabled
+              ? { backgroundColor: 'gray' }
+              : { backgroundColor: buttonColor }
+          }
         >
           Change to {newButtonColor}
         </button>
