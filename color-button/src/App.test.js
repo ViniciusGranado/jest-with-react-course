@@ -7,7 +7,9 @@ test('button has initial color', () => {
   render(<App />);
 
   // WHEN
-  const colorButton = screen.getByRole('button', { name: 'Change to Midnight Blue' });
+  const colorButton = screen.getByRole('button', {
+    name: 'Change to Midnight Blue',
+  });
 
   //THEN
   expect(colorButton).toHaveStyle({ backgroundColor: 'MediumVioletRed' });
@@ -15,13 +17,15 @@ test('button has initial color', () => {
   fireEvent.click(colorButton);
 
   expect(colorButton).toHaveStyle({ backgroundColor: 'MidnightBlue' });
-  expect(colorButton.textContent).toBe('Change to Medium Violet Red');
+  expect(colorButton).toHaveTextContent('Change to Medium Violet Red');
 });
 
 test('initial conditions', () => {
   render(<App />);
 
-  const colorButton = screen.getByRole('button', { name: 'Change to Midnight Blue' });
+  const colorButton = screen.getByRole('button', {
+    name: 'Change to Midnight Blue',
+  });
   expect(colorButton).toBeEnabled();
 
   const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
@@ -31,7 +35,9 @@ test('initial conditions', () => {
 test('button should have correct state according to checkbox', () => {
   render(<App />);
 
-  const colorButton = screen.getByRole('button', { name: 'Change to Midnight Blue' });
+  const colorButton = screen.getByRole('button', {
+    name: 'Change to Midnight Blue',
+  });
   const checkbox = screen.getByRole('checkbox');
 
   expect(colorButton).toBeEnabled();
@@ -47,7 +53,9 @@ test('button should have correct state according to checkbox', () => {
 
 test('button should have gray color when is disabled', () => {
   render(<App />);
-  const button = screen.getByRole('button', { name: 'Change to Midnight Blue' });
+  const button = screen.getByRole('button', {
+    name: 'Change to Midnight Blue',
+  });
   const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
 
   fireEvent.click(checkbox);
@@ -65,6 +73,8 @@ describe('spaces before camel-case capital letters', () => {
   });
 
   test('works for multiple inner capital letters', () => {
-    expect(repalaceCamelWithSpaces('MediumVioletRed')).toBe('Medium Violet Red');
+    expect(repalaceCamelWithSpaces('MediumVioletRed')).toBe(
+      'Medium Violet Red'
+    );
   });
 });
