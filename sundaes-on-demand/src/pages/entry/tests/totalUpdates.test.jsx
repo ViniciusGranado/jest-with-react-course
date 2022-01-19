@@ -4,27 +4,35 @@ import userEvent from '@testing-library/user-event';
 import { Options } from '../Options';
 
 test('update scoop subtotal when scoops change', async () => {
+  // GIVEN 
   render(<Options type="scoops" />);
-
   const scoopsSubtotal = screen.getByText('Scoops total: $', { exact: false });
-
-  expect(scoopsSubtotal).toHaveTextContent('0.00');
 
   const vanillaInput = await screen.findByRole('spinbutton', {
     name: 'Vannilla',
   });
 
-  userEvent.clear(vanillaInput);
-  userEvent.type(vanillaInput, '1');
-
-  expect(scoopsSubtotal).toHaveTextContent('2.00');
-
   const chocolateInput = await screen.findByRole('spinbutton', {
     name: 'Chocolate',
   });
 
+  expect(scoopsSubtotal).toHaveTextContent('0.00');
+
+  // WHEN
+
+  userEvent.clear(vanillaInput);
+  userEvent.type(vanillaInput, '1');
+
+  // THEN
+
+  expect(scoopsSubtotal).toHaveTextContent('2.00');
+
+  // WHEN
+
   userEvent.clear(chocolateInput);
   userEvent.type(chocolateInput, '2');
+  
+  // THEN
 
   expect(scoopsSubtotal).toHaveTextContent('6.00');
 });
