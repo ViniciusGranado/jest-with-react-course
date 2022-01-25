@@ -1,12 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../../test-utils/testing-library-utils';
 import userEvent from '@testing-library/user-event';
 
 import { Options } from '../Options';
-import { OrderDetailsProvider } from '../../../contexts/OrderDetail';
 
 test('update scoop subtotal when scoops change', async () => {
   // GIVEN 
-  render(<Options type="scoops" />, {wrapper: OrderDetailsProvider});
+  render(<Options optionType="scoops" />);
   const scoopsSubtotal = screen.getByText('Scoops total: $', { exact: false });
 
   const vanillaInput = await screen.findByRole('spinbutton', {

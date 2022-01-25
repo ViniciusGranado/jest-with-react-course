@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../../test-utils/testing-library-utils';
 import { Options } from '../Options';
+import { OrderDetailsProvider } from '../../../contexts/OrderDetail';
 
 test('displays image for each scoop option from server', async () => {
   render(<Options optionType="scoops" />);
@@ -22,5 +23,9 @@ test('displays image for each scoop toppings from server', async () => {
 
   const altTex = scoopImages.map((element) => element.alt);
 
-  expect(altTex).toEqual(['Cherries topping', 'M&Ms topping', 'Hot fudge topping']);
+  expect(altTex).toEqual([
+    'Cherries topping',
+    'M&Ms topping',
+    'Hot fudge topping',
+  ]);
 });
