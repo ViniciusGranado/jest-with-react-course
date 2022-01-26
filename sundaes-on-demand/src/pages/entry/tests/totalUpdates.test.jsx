@@ -9,7 +9,7 @@ test('update scoop subtotal when scoops change', async () => {
   const scoopsSubtotal = screen.getByText('Scoops total: $', { exact: false });
 
   const vanillaInput = await screen.findByRole('spinbutton', {
-    name: 'Vannilla',
+    name: 'Vanilla',
   });
 
   const chocolateInput = await screen.findByRole('spinbutton', {
