@@ -3,8 +3,8 @@ import { pricePerItem } from '../constants/index';
 
 const formatCurrency = (amount) => {
   return new Intl.NumberFormat('en-US', {
-    currency: 'USD',
-    minimumFractionDigits: 2,
+    style: 'currency',
+    currency: 'USD'
   }).format(amount);
 }
 
