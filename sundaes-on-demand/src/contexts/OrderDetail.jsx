@@ -1,12 +1,6 @@
 import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { pricePerItem } from '../constants/index';
-
-const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(amount);
-}
+import { formatCurrency } from '../utils/index';
 
 const OrderDetails = createContext();
 
@@ -14,21 +8,23 @@ export const useOrderDetails = () => {
   const context = useContext(OrderDetails);
 
   if (!context) {
-    throw new Error('userOrderDetails must be used within OrderDetailsProvider');
-  };
+    throw new Error(
+      'userOrderDetails must be used within OrderDetailsProvider'
+    );
+  }
 
   return context;
-}
+};
 
 const calculateSubtotal = (optionType, optionCounts) => {
   let optionCount = 0;
 
-  for(const count of optionCounts[optionType].values()) {
+  for (const count of optionCounts[optionType].values()) {
     optionCount += count;
-  };
+  }
 
   return optionCount * pricePerItem[optionType];
-}
+};
 
 export const OrderDetailsProvider = (props) => {
   const [optionCounts, setOptionCounts] = useState({
@@ -52,12 +48,12 @@ export const OrderDetailsProvider = (props) => {
       scoops: formatCurrency(scoopsSubtotal),
       toppings: formatCurrency(toppingsSubtotal),
       grandTotal: formatCurrency(grandTotal),
-    })
+    });
   }, [optionCounts]);
 
   const value = useMemo(() => {
     const updateItemCount = (itemName, newItemCount, optionType) => {
-      const newOptionCounts = {...optionCounts};
+      const newOptionCounts = { ...optionCounts };
 
       const optionCountsMap = newOptionCounts[optionType];
       optionCountsMap.set(itemName, parseInt(newItemCount));
@@ -65,8 +61,8 @@ export const OrderDetailsProvider = (props) => {
       setOptionCounts(newOptionCounts);
     };
 
-    return [{...optionCounts, totals}, updateItemCount];
-  }, [optionCounts, totals])
+    return [{ ...optionCounts, totals }, updateItemCount];
+  }, [optionCounts, totals]);
 
-  return <OrderDetails.Provider value={value} {...props} />
-}
+  return <OrderDetails.Provider value={value} {...props} />;
+};
