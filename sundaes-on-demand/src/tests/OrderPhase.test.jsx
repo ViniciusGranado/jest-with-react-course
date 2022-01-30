@@ -30,7 +30,7 @@ test('order phases for happy path', async () => {
   const summaryTitle = screen.getByRole('heading', { name: 'Order Summary' });
   const scoopsValue = screen.getByRole('heading', { name: 'Scoops: $2.00' });
   const scoopsItems = screen.getByText('1 Vanilla');
-  const toppingsValue = screen.getByRole('heading', { name: 'Scoops: $1.50' });
+  const toppingsValue = screen.getByRole('heading', { name: 'Toppings: $1.50' });
   const toppingsItems = screen.getByText('Cherries');
 
   expect(summaryTitle).toBeInTheDocument();
