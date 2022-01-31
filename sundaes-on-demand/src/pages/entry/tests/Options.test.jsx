@@ -1,4 +1,5 @@
 import { render, screen } from '../../../test-utils/testing-library-utils';
+import userEvent from '@testing-library/user-event';
 import { Options } from '../Options';
 
 test('displays image for each scoop option from server', async () => {
@@ -29,3 +30,15 @@ test('displays image for each scoop toppings from server', async () => {
   ]);
 });
 
+test('should not update scoops total for invalid input', async () => {
+  render(<Options optionType={'scoops'} />);
+
+  const input = await screen.findByRole('spinbutton', { name: /vanilla/i });
+  const scoopsTotal = await screen.findByText(/scoops total/i);
+
+  userEvent.clear(input);
+  userEvent.type(input, '-1');
+
+
+  expect(scoopsTotal).toHaveTextContent('0.00');
+});
