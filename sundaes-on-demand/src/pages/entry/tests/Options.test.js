@@ -28,3 +28,4 @@ test('displays image for each scoop toppings from server', async () => {
     'Hot fudge topping',
   ]);
 });
+
